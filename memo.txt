@@ -1,0 +1,9 @@
+git add .
+
+git commit -m ""
+
+git push
+
+現在の状態を確認するコマンド
+git status
+
