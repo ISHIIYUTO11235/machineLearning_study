@@ -45,7 +45,7 @@ def plot_line(ax, a, b, label=None, color='black', alpha=1.):#ラインを引く
     x = np.array([xmin, xmax]) #直線を引くためのX座標を準備。直線を描くには「両端の2点」だけあれば十分
     return ax.plot(x, a * x + b, color, ls='-', label=label, alpha=alpha)
 
-def plot_hat_y(ax, D, a, b, offset_hat_y, marker='*', show_text=True):
+def plot_hat_y(ax, D, a, b, offset_hat_y, marker='*', show_text=True): #予測値（直線上の点）を打つ関数
     A = []
     for i, row in enumerate(D):
         x = D[i,0]
@@ -61,3 +61,4 @@ plot_line(ax, 1, 1)
 plot_hat_y(ax, D, 1, 1, offset_hat_y)
 plt.legend(loc='upper left')
 plt.show()
+
