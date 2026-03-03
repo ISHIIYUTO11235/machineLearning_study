@@ -167,4 +167,28 @@ ax.contour(
     A, B, np.clip(J, 1e-3, None), vmin=1, colors='tab:red', linewidths=0.5, linestyles='dashed',
     norm=matplotlib.colors.LogNorm(vmin=J.min(), vmax=J.max()))
 
+def draw_means(ax, D):
+    xm = np.mean(D[:,0])
+    ym = np.mean(D[:,1])
+    plt.vlines([xm], xmin, xmax, "black", linestyles='dashed', label=r"$\bar{x}$")
+    plt.hlines([ym], ymin, ymax, "black", linestyles='dotted', label=r"$\bar{y}$")
+    
+def draw_regions(ax, D):
+    xm = np.mean(D[:,0])
+    ym = np.mean(D[:,1])
+    ax.add_patch(
+         matplotlib.patches.Rectangle((0, 0), xm, ym, facecolor='red', alpha=0.1, fill=True))
+    ax.add_patch(
+         matplotlib.patches.Rectangle((xm, ym), 10-xm, 10-ym, facecolor='red', alpha=0.1, fill=True))
+    ax.add_patch(
+         matplotlib.patches.Rectangle((0, ym), xm, ym, facecolor='blue', alpha=0.1, fill=True))
+    ax.add_patch(
+         matplotlib.patches.Rectangle((xm, 0), 10-xm, ym, facecolor='blue', alpha=0.1, fill=True))
+
+fig, ax = init_graph()
+plot_data(ax, D)
+draw_means(ax, D)
+draw_regions(ax, D)
+plt.legend(loc='upper left')
 plt.show()
+##あまりにもフロントエンドっぽいことが多いので　しっかりと数式から理解する方法に変える。フロントエンドを学ぶ意味はない。インデックスの意味さえ分かればよい
